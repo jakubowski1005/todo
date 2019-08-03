@@ -6,36 +6,77 @@ export class LoginComponent extends Component {
 
         this.state = {
             username: "jakubowski1005",
-            password: ""
+            password: "",
+            showSuccessMessage: false,
+            hasLoginFailed: false
         }
 
-        this.handleUsernameChange = this.handleUsernameChange.bind(this);
-        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        // this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        // this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.loginClicked = this.loginClicked.bind(this);
     }
 
-    handleUsernameChange(event) {
-        console.log(event.target.value);
+    loginClicked() {
+        console.log(this.state);
+        if(this.state.username==='jakubowski1005' && this.state.password==="pass") {
+            console.log('Successful');
+            this.setState({showSuccessMessage: true});
+            this.setState({hasLoginFailed: false});
+        } else {
+            console.log('Failed');
+            this.setState({showSuccessMessage: false});
+            this.setState({hasLoginFailed: true});
+        }
+    }
+
+    handleChange(event) {
+        //console.log(`You change ${event.target.name} into ${event.target.value}`)
+
         this.setState({
-            username: event.target.value
+            [event.target.name]: event.target.value
         });
     }
 
-    handlePasswordChange(event) {
-        console.log(event.target.value);
-        this.setState({
-            password: event.target.value
-        });
-    }
+    // handleUsernameChange(event) {
+    //     console.log(event.target.value);
+    //     this.setState({
+    //         username: event.target.value
+    //     });
+    // }
+
+    // handlePasswordChange(event) {
+    //     console.log(event.target.value);
+    //     this.setState({
+    //         password: event.target.value
+    //     });
+    // }
 
     render() {
         return (
             <div>
-               Username: <input type="text" name="username" value={this.state.username} onChange={this.handleUsernameChange} />
-               Password: <input type="password" name="password" value={this.state.password} onChange={this.handlePasswordChange} />
-               <button>Login</button>
+                <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
+                <ShowLoginSuccessful showSuccessMessage={this.state.showSuccessMessage} />
+               Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+               Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+               <button onClick={this.loginClicked}>Login</button>
             </div>
         )
     }
+}
+
+function ShowInvalidCredentials(props) {
+    if(props.hasLoginFailed) {
+        return <div>Invalid Credentials</div>
+    }
+    return null
+}
+
+function ShowLoginSuccessful(props) {
+    if(props.showSuccessMessage) {
+        return <div>Login Successful</div>
+    }
+    return null
 }
 
 export default LoginComponent
