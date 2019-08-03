@@ -4,10 +4,6 @@ export class ResetButton extends Component {
     constructor() {
         super();
 
-        this.state = {
-            counter: 0
-        }
-
         this.reset = this.reset.bind(this);
     }
     render() {
@@ -28,9 +24,6 @@ export class ResetButton extends Component {
     }
 
     reset() {
-        this.setState = ( (prevState) => {
-            return {counter: 0}
-        })
         this.props.resetMethod();
     }
 

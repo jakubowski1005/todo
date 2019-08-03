@@ -35,23 +35,19 @@ export class Counter extends Component {
     }
 
     increment(by) {
-        //console.log(`call parent increment method - ${by}`);
         this.setState( (prevState) => {
             return {counter: prevState.counter + by}
         });
     }
 
     decrement(by) {
-        //console.log(`call parent increment method - ${by}`);
         this.setState( (prevState) => {
             return {counter: prevState.counter - by}
         });
     }
 
     reset() {
-        this.setState( () => {
-            return {counter: 0}
-        });
+        this.setState({ counter: 0 });
     }
 }
 

@@ -4,14 +4,8 @@ import './CounterButton.css';
 
 export class CounterButton extends Component {
 
-    // Define the initial state in a constructor
-    //state => counter 0
     constructor() {
         super();
-
-        this.state = {
-            counter: 0
-        }
 
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
@@ -26,21 +20,11 @@ export class CounterButton extends Component {
         )
     }
 
-    increment() { //Update state => counter++
-        this.setState((prevState) => {
-            return {
-                counter: prevState.counter + this.props.by
-            }
-        });
-
+    increment() { 
         this.props.incrementMethod(this.props.by);
     }
 
     decrement() {
-        this.setState((prevState) => {
-            return {counter: prevState.counter - this.props.by}
-        })
-
         this.props.decrementMethod(this.props.by);
     }
 }
@@ -52,7 +36,5 @@ CounterButton.defaultProps = {
 CounterButton.propTypes = {
     by: PropTypes.number
 }
-
-
 
 export default CounterButton
