@@ -14,8 +14,8 @@ export class CounterButton extends Component {
     render() {
         return (
             <div>
-                <button className="green-button" onClick={this.increment}>+{this.props.by}</button>
-                <button className="red-button" onClick={this.decrement}>-{this.props.by}</button>
+                <button className="green-button" onClick={() => this.increment(this.props.by)}>+{this.props.by}</button>
+                <button className="red-button" onClick={() => this.decrement(this.props.by)}>-{this.props.by}</button>
             </div>
         )
     }
