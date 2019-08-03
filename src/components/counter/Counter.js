@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
-import './Counter.css';
+import CounterButton from './CounterButton'
+import ResetButton from './ResetButton';
 
 export class Counter extends Component {
 
-    // Define the initial state in a constructor
-    //state => counter 0
     constructor() {
         super();
 
@@ -15,45 +13,46 @@ export class Counter extends Component {
 
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
+        this.reset = this.reset.bind(this);
     }
 
     render() {
 
         const spanStyle = {
-            fontSize: "50px",
-            padding: "10px 10px"
+            fontSize: "100px",
+            padding: "10px 80px"
         };
 
         return (
-            <div>
-                <button className="green-button" onClick={this.increment}>+{this.props.by}</button>
+            <div className="counter">
+                <CounterButton incrementMethod={this.increment} decrementMethod={this.decrement} />
+                <CounterButton by={5} incrementMethod={this.increment} decrementMethod={this.decrement} />
+                <CounterButton by={10} incrementMethod={this.increment} decrementMethod={this.decrement} />
                 <span className="count" style={spanStyle}>{ this.state.counter }</span>
-                <button className="red-button" onClick={this.decrement}>-{this.props.by}</button>
+                <ResetButton resetMethod={this.reset} />
             </div>
         )
     }
 
-    increment() { //Update state => counter++
-        this.setState({
-            counter: this.state.counter + this.props.by
+    increment(by) {
+        //console.log(`call parent increment method - ${by}`);
+        this.setState( (prevState) => {
+            return {counter: prevState.counter + by}
         });
     }
 
-    decrement() {
-        this.setState({
-            counter: this.state.counter - this.props.by
-        })
+    decrement(by) {
+        //console.log(`call parent increment method - ${by}`);
+        this.setState( (prevState) => {
+            return {counter: prevState.counter - by}
+        });
+    }
+
+    reset() {
+        this.setState( () => {
+            return {counter: 0}
+        });
     }
 }
-
-Counter.defaultProps = {
-    by: 1
-}
-
-Counter.propTypes = {
-    by: PropTypes.number
-}
-
-
 
 export default Counter
