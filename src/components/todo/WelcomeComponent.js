@@ -4,7 +4,7 @@ export class WelcomeComponent extends Component {
     render() {
         return (
             <div>
-                Welcome to my todo app!
+                Welcome {this.props.match.params.name} to todo app!
             </div>
         )
     }
