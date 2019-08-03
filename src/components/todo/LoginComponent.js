@@ -20,7 +20,8 @@ export class LoginComponent extends Component {
     loginClicked() {
         console.log(this.state);
         if(this.state.username==='jakubowski1005' && this.state.password==="pass") {
-            console.log('Successful');
+            //console.log('Successful');
+            this.props.history.push(`/welcome/${this.state.username}`);
             this.setState({showSuccessMessage: true});
             this.setState({hasLoginFailed: false});
         } else {
@@ -67,18 +68,18 @@ export class LoginComponent extends Component {
     }
 }
 
-function ShowInvalidCredentials(props) {
-    if(props.hasLoginFailed) {
-        return <div>Invalid Credentials</div>
-    }
-    return null
-}
+// function ShowInvalidCredentials(props) {
+//     if(props.hasLoginFailed) {
+//         return <div>Invalid Credentials</div>
+//     }
+//     return null
+// }
 
-function ShowLoginSuccessful(props) {
-    if(props.showSuccessMessage) {
-        return <div>Login Successful</div>
-    }
-    return null
-}
+// function ShowLoginSuccessful(props) {
+//     if(props.showSuccessMessage) {
+//         return <div>Login Successful</div>
+//     }
+//     return null
+// }
 
 export default LoginComponent
