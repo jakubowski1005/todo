@@ -1,15 +1,16 @@
 
 
 button {
-    background-color: green;
     font-size: 20px;
     padding: 15px;
     color: white;
     width: 100px;
 }
 
-.count {
-    font-size: 50px;
-    border: 2px solid black;
-    padding: 15px;
+.red-button {
+    background-color: red;
+}
+
+.green-button {
+    background-color: green;
 }

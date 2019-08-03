@@ -8,6 +8,8 @@ class App extends Component {
         return (
             <div>
                 <Counter />
+                <Counter by={5}/>
+                <Counter by={10}/>
             </div>
         );
     }
