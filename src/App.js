@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import SomeComponent from './SomeComponent';
-import AnotherComponent from './AnotherComponent';
+import SomeComponent from './components/learning-examples/SomeComponent';
+import AnotherComponent from './components/learning-examples/AnotherComponent';
+import FirstComponent from './components/learning-examples/FirstComponent';
+import SecondComponent from './components/learning-examples/SecondComponent';
+import ThirdComponent from './components/learning-examples/ThirdComponent';
 
 class App extends Component {
 
@@ -12,21 +15,10 @@ class App extends Component {
                 <AnotherComponent />
                 <FirstComponent />
                 <SecondComponent />
+                <ThirdComponent />
             </div>
         );
     }
-}
-
-const FirstComponent = () => {
-    return (
-        <div>
-            Some conent of FIRST component.
-        </div>
-    );
-}
-
-function SecondComponent() {
-    return <div>Some conent of SECOND component.</div>
 }
 
 export default App;
