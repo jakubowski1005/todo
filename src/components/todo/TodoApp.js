@@ -4,6 +4,8 @@ import LoginComponent from './LoginComponent'
 import ListTodosComponent from './ListTodosComponent'
 import ErrorComponent from './ErrorComponent'
 import WelcomeComponent from './WelcomeComponent'
+import HeaderComponent from './HeaderComponent';
+import FooterComponent from './FooterComponent';
 
 export class TodoApp extends Component {
     render() {
@@ -11,6 +13,7 @@ export class TodoApp extends Component {
             <div className="TodoApp">
             <Router>
                 <>
+                    <HeaderComponent />
                     <Switch>
                         <Route path="/" exact component={LoginComponent} />
                         <Route path="/login" component={LoginComponent} />
@@ -19,6 +22,7 @@ export class TodoApp extends Component {
                         <Route path="/todos" component={ListTodosComponent} />
                         <Route component={ErrorComponent} />
                     </Switch>
+                    <FooterComponent />
                 </>
             </Router>
                 {/* <div>My todo app</div>

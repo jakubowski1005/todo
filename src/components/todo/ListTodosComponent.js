@@ -4,7 +4,11 @@ export class ListTodosComponent extends Component {
     constructor() {
         super()
         this.state = {
-            todo: {id: 1, description: 'Learn React'}
+            todos: [
+                {id: 1, description: 'Learn React', done: false, targetDate: new Date()},
+                {id: 2, description: 'Become an Expert at React', done: false, targetDate: new Date()},
+                {id: 3, description: 'Learn React', done: false, targetDate: new Date()}
+            ]
         }
     }
 
@@ -17,13 +21,19 @@ export class ListTodosComponent extends Component {
                         <tr>
                             <th>id</th>
                             <th>description</th>
+                            <th>done</th>
+                            <th>target date</th>
                         </tr>
                     </thead>
                     <tbody>
+                    { this.state.todos.map( (todo) => 
                         <tr>
-                            <td>{ this.state.todo.id }</td>
-                            <td>{ this.state.todo.description }</td>
+                            <td>{ todo.id }</td>
+                            <td>{ todo.description }</td>
+                            <td>{ todo.done.toString() }</td>
+                            <td>{ todo.targetDate.toString() }</td>
                         </tr>
+                    )}
                     </tbody>
                 </table>
             </div>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-export class WelcomeComponent extends Component {
+class WelcomeComponent extends Component {
     render() {
         return (
             <div>
-                Welcome {this.props.match.params.name} to todo app!
+                Welcome {this.props.match.params.name} to todo app! You can manage your todos <Link to="/todos">here</Link>.
             </div>
         )
     }
