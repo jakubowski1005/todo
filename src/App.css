@@ -1,3 +1,16 @@
+h1 {
+    text-align: center;
+}
+
+div {
+    text-align: center;
+}
+
+.container {
+    display: inline-block;
+    text-align: center;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
