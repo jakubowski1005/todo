@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import Counter from './components/counter/Counter';
-import TodoApp from './components/todo/TodoApp';
+import TodoApp from './components/todo/TodoApp.jsx';
 import './App.css';
 import './bootstrap.css'
 
