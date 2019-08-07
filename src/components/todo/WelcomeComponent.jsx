@@ -5,8 +5,9 @@ import HelloWorldService from '../../api/todo/HelloWorldService'
 class WelcomeComponent extends Component {
     constructor(props) {
         super(props);
-
+        console.log(this.props)
         this.state = {
+            username: this.props.match.params.name,
             welcomeMessage: '',
             errorMessage: ''
         }
@@ -33,10 +34,19 @@ class WelcomeComponent extends Component {
 
     handleError(err) {
         console.log(err.response)
-        this.setState({errorMessage: err.response.data.message})
+        let errorMessage = '';
+
+        if(err.message)
+            errorMessage += err.message
+
+        if(err.response && err.response.data)
+            errorMessage += err.response.data.message
+        
+        this.setState({welcomeMessage: errorMessage})
     }
 
     render() {
+        console.log(this.props)
         return (
             <>
                 <h1>Welcome!</h1>
@@ -46,7 +56,7 @@ class WelcomeComponent extends Component {
 
                 <div className="container">
                     Click here to get a customized welcome message.
-                    <button onClick={this.retrieveWelcomeMessage} className="btn btn-succes btn-blue" style={{backgroundColor: "green"}}>Click here</button>
+                    <button onClick={this.retrieveWelcomeMessage} className="btn btn-success">Click here</button>
                 </div>
                 {this.state.errorMessage !== '' && <div className="alert alert-danger">{this.state.errorMessage}</div>}
                 <div>{this.state.welcomeMessage}</div>
