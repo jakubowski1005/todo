@@ -10,8 +10,8 @@ export class HeaderComponent extends Component {
         return (
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                    <div><a href="http://localhost:3000/welcome" className="navbar-brand">Done!</a></div>
                     <ul className="navbar-nav">
+                    <li><Link to={`/welcome/${AuthenticationService.getLoggedInUsername()}`} className="nav-link">Done!</Link></li>
                         {isUserLoggedIn && <li><Link to="/welcome/jakubowski1005" className="nav-link">Home</Link></li>}
                         {isUserLoggedIn && <li><Link to="/todos" className="nav-link">Todos</Link></li>}
                     </ul>
