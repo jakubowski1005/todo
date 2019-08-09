@@ -22,8 +22,8 @@ export class TodoApp extends Component {
                             <Route path="/" exact component={LoginComponent} />
                             <Route path="/login" component={LoginComponent} />
                             <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent} />
-                            <AuthenticatedRoute path="/todos/:id" component={TodoComponent} />
-                            <AuthenticatedRoute path="/todos" component={ListTodosComponent} />
+                            <AuthenticatedRoute path="/jpa/users/:username/todos/:id" component={TodoComponent} />
+                            <AuthenticatedRoute path="/jpa/users/:username/todos" component={ListTodosComponent} />
                             <AuthenticatedRoute path="/logout" component={LogoutComponent} />
                             <Route component={ErrorComponent} />
                         </Switch>

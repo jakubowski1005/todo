@@ -9,6 +9,7 @@ export class ListTodosComponent extends Component {
         console.log('constructor')
         this.state = {
             todos: [],
+            username: AuthenticationService.getLoggedInUsername(),
             message: null
         }
 
@@ -25,8 +26,7 @@ export class ListTodosComponent extends Component {
     }
 
     refreshTodos() {
-        let username = AuthenticationService.getLoggedInUsername();
-        TodoDataService.retrieveAllTodos(username)
+        TodoDataService.retrieveAllTodos(this.state.username)
             .then( res => {
                 console.log(res.data)
                 this.setState({todos: res.data})
@@ -34,9 +34,8 @@ export class ListTodosComponent extends Component {
     }
 
     deleteTodoClicked(id) {
-        let username = AuthenticationService.getLoggedInUsername();
-        console.log(`id: ${id}  username: ${username}`)
-        TodoDataService.deleteTodo(username, id)
+        console.log(`id: ${id}  username: ${this.state.username}`)
+        TodoDataService.deleteTodo(this.state.username, id)
             .then(res => {
                 this.setState({message: `Delete of todo ${id} successful`})
                 this.refreshTodos();
@@ -44,14 +43,12 @@ export class ListTodosComponent extends Component {
     }
 
     addTodoClicked() {
-        console.log('Add new todo')
-        this.props.history.push('/todos/-1')
+        this.props.history.push(`/jpa/users/${this.state.username}/todos/-1`)
     }
 
     updateTodoClicked(id) {
-        let username = AuthenticationService.getLoggedInUsername();
-        console.log(`Updating todo: id: ${id} username: ${username}`)
-        this.props.history.push(`/todos/${id}`)
+        console.log(`Updating todo: id: ${id} username: ${this.state.username}`)
+        this.props.history.push(`/jpa/users/${this.state.username}/todos/${id}`)
     }
 
     componentWillUnmount() {

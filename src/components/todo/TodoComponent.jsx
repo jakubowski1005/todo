@@ -10,7 +10,7 @@ class TodoComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            //username: this.props.match.params.name,
+            username: AuthenticationService.getLoggedInUsername(),
             description: '',
             targetDate: moment(new Date()).format('YYYY-MM-DD')
         }
@@ -26,9 +26,7 @@ class TodoComponent extends Component {
             return
         }
 
-        let username = AuthenticationService.getLoggedInUsername()
-
-        TodoDataService.retrieveTodo(username, this.state.id)
+        TodoDataService.retrieveTodo(this.state.username, this.state.id)
             .then(response => this.setState({
                 description: response.data.description,
                 targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
@@ -53,21 +51,20 @@ class TodoComponent extends Component {
 
     onSubmit(values) {
         console.log(values);
-        let username = AuthenticationService.getLoggedInUsername();
         
         let todo = {
             id: this.state.id,
-            username: username,
+            username: this.state.username,
             description: values.description,
             targetDate: values.targetDate
         }
 
         if(this.state.id === -1) {
-            TodoDataService.createTodo(username, todo)
-                .then(() => this.props.history.push(`/todos`))
+            TodoDataService.createTodo(this.state.username, todo)
+                .then(() => this.props.history.push(`/jpa/users/${this.state.username}/todos`))
         } else {
-            TodoDataService.updateTodo(username, this.state.id, todo)
-                .then(() => this.props.history.push(`/todos`))
+            TodoDataService.updateTodo(this.state.username, this.state.id, todo)
+                .then(() => this.props.history.push(`/jpa/users/${this.state.username}/todos`))
         }
     }
 
