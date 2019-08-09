@@ -10,7 +10,7 @@ class TodoComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            username: AuthenticationService.getLoggedInUsername(),
+            username: '',
             description: '',
             targetDate: moment(new Date()).format('YYYY-MM-DD')
         }
@@ -28,6 +28,7 @@ class TodoComponent extends Component {
 
         TodoDataService.retrieveTodo(this.state.username, this.state.id)
             .then(response => this.setState({
+                username: AuthenticationService.getLoggedInUsername(),
                 description: response.data.description,
                 targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
             }))

@@ -9,6 +9,7 @@ import FooterComponent from './FooterComponent.jsx'
 import AuthenticatedRoute from './AuthenticatedRoute.jsx'
 import LogoutComponent from './LogoutComponent.jsx'
 import TodoComponent from './TodoComponent.jsx'
+import RegisterComponent from './RegisterComponent.jsx';
 
 
 export class TodoApp extends Component {
@@ -21,6 +22,7 @@ export class TodoApp extends Component {
                         <Switch>
                             <Route path="/" exact component={LoginComponent} />
                             <Route path="/login" component={LoginComponent} />
+                            <Route path="/register" component={RegisterComponent} />
                             <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent} />
                             <AuthenticatedRoute path="/jpa/users/:username/todos/:id" component={TodoComponent} />
                             <AuthenticatedRoute path="/jpa/users/:username/todos" component={ListTodosComponent} />
